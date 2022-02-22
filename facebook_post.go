@@ -52,11 +52,8 @@ func PublishPost(pageAccessToken string, postID string) (interface{}, error) {
 }
 
 // PublishPost ...
-func UploadMedia(pageAccessToken string, pageID string, url string, message string) (interface{}, error) {
-	response := struct {
-		ID     string `json:"id"`
-		PostID string `json:"post_id"`
-	}{}
+func UploadMedia(pageAccessToken string, pageID string, url string, message string) (*PostMediaResponse, error) {
+	response := PostMediaResponse{}
 	request := struct {
 		AccessToken string `json:"access_token"`
 		Url         string `json:"url"`
