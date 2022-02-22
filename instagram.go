@@ -25,12 +25,26 @@ func GetInstagramMediaList(accessToken string, instagramUserID string) (*[]Insta
 	request := struct {
 		Fields string `json:"fields"`
 	}{
-		Fields: "id,caption,comments_count,like_count,is_comment_enabled,media_product_type,media_type,media_url,owner,permalink,shortcode,thumbnail_url,timestamp,username,video_title,children{id,media_type,media_url}",
+		Fields: "id,caption,comments_count,like_count,is_comment_enabled,media_product_type,media_type,media_url,owner,permalink,shortcode,thumbnail_url,timestamp,username,children{id,media_type,media_url}",
 	}
 	if err := makeAPIRequest("GET", accessToken, 0, fmt.Sprintf("%s/%s/media", GRAPH_API_VERSION, instagramUserID), &request, &response); err != nil {
 		return nil, err
 	}
 	return &response.Data, nil
+}
+
+func GetInstagramMediaPost(accessToken string, instagramPostID string) (*InstagramMedia, error) {
+	response := InstagramMedia{}
+	request := struct {
+		Fields string `json:"fields"`
+	}{
+		Fields: "id,caption,comments_count,like_count",
+	}
+
+	if err := makeAPIRequest("GET", accessToken, 0, fmt.Sprintf("%s/%s", GRAPH_API_VERSION, instagramPostID), &request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
 }
 
 // UploadInstagramMedia ...

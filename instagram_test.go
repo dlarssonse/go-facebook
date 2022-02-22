@@ -61,6 +61,14 @@ func TestInstagram(t *testing.T) {
 
 	// Test listing of images
 	/*
+		media, err := GetInstagramMediaPost((*accounts)[0].AccessToken, instagramMediaID)
+		if err != nil {
+			t.Fatalf("Error: %s", err)
+		}
+		log.Printf("Media: %+v", media)
+	*/
+
+	/*
 		instagramMedias, err := GetInstagramMediaList((*accounts)[0].AccessToken, instagramAccount.ID)
 		if err != nil {
 			t.Fatalf("Error: %s", err)
