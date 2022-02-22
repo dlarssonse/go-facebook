@@ -104,6 +104,11 @@ type Post struct {
 	CreatedTime string `json:"created_time"`
 }
 
+type PostMediaResponse struct {
+	ID     string `json:"id"`
+	PostID string `json:"post_id"`
+}
+
 type PostStats struct {
 	ID    string `json:"id"`
 	Likes struct {
