@@ -48,6 +48,16 @@ func TestFacebook(t *testing.T) {
 		}
 		log.Printf("Pages: %+v", pages)
 	*/
+
+	// Upload photo
+	pageID := (*accounts)[0].ID
+	pageAccessToken := (*accounts)[0].AccessToken
+	media, err := UploadMedia(pageAccessToken, pageID, "https://mik.earn.se/files/b2c/output/-1645538036.png", "Vi provar med meddelanden.\nOch länk https://www.earn.se/")
+	if err != nil {
+		t.Fatalf("Error: %s", err)
+	}
+	log.Printf("Media: %+v", media)
+
 	// Test posting a request
 	/*
 		postRequest := PostRequest{Message: "Test", Published: true, Link: "<INSERT LINK>", Picture: "<INSERT PICTURE>"}

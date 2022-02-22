@@ -51,6 +51,27 @@ func PublishPost(pageAccessToken string, postID string) (interface{}, error) {
 	return &response, nil
 }
 
+// PublishPost ...
+func UploadMedia(pageAccessToken string, pageID string, url string, message string) (interface{}, error) {
+	response := struct {
+		ID     string `json:"id"`
+		PostID string `json:"post_id"`
+	}{}
+	request := struct {
+		AccessToken string `json:"access_token"`
+		Url         string `json:"url"`
+		Message     string `json:"message"`
+	}{
+		AccessToken: pageAccessToken,
+		Url:         url,
+		Message:     message,
+	}
+	if err := makeAPIRequest("POST", "", 0, fmt.Sprintf("%s/photos", pageID), &request, &response); err != nil {
+		return nil, err
+	}
+	return &response, nil
+}
+
 func GetPostStats(pageAccessToken string, postID string) (*PostStats, error) {
 	response := PostStats{}
 	request := struct {
